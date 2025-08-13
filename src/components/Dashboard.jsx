@@ -1,6 +1,7 @@
 import { Activity, Clock3, FileQuestionMark, Plus, Trophy, User } from 'lucide-react'
 import Navbar from './Navbar'
 import Header from './Header'
+import "../CSS/Dashboard.css"
 
 
 

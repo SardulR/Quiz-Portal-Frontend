@@ -5,6 +5,7 @@ import { InputText } from 'primereact/inputtext';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import Header from './Header';
+import "../CSS/Question.css"
 
 function Questions() {
     const [globalFilter, setGlobalFilter] = useState("");

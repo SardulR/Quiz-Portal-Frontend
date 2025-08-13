@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import {Moon, PanelLeft, Sun} from 'lucide-react'
 import { useLocation} from 'react-router'
+import "../CSS/Navbar.css"
 
 function Navbar() {
     const[search,setSearch]=useState("Search for anything..")
