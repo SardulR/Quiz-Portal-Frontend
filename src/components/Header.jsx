@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {BrainCircuit, ChevronRight, CircuitBoard, LayoutDashboard, ShoppingBag, User, WalletCards } from "lucide-react"
 import { useNavigate } from 'react-router'
+import "../CSS/Header.css"
 
 
 function Header({id}) {
@@ -25,6 +26,14 @@ function Header({id}) {
     }
     if (e.target.className === "optionsaddquestions") {
       navigate("/question/new");
+    }
+  };
+   const handleSelectChange2 = (e) => {
+    if (e.target.className === "optionsquiz") {
+      navigate("/quiz");
+    }
+    if (e.target.className === "optionsaddquiz") {
+      navigate("/quiz/new");
     }
   };
   return (
@@ -82,8 +91,8 @@ function Header({id}) {
            </div>
            {quiz&& (
             <>
-            <span className = "optionsquiz" >Quiz</span>
-            <span className = "optionsaddquiz" >Add Quiz</span>
+            <span className = "optionsquiz" onClick={handleSelectChange2}>Quiz</span>
+            <span className = "optionsaddquiz" onClick={handleSelectChange2} >Add Quiz</span>
             </>
            )}
         </div>

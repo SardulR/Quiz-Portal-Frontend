@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Navbar from './Navbar'
 import { Dropdown } from 'primereact/dropdown'
 import Header from './Header'
+import "../CSS/Addquestion.css"
 
 function Addquestions() {
       const[name,setName]=useState()

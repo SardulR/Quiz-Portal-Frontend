@@ -8,6 +8,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";  // Theme
 import "primereact/resources/primereact.min.css"; // Core styles
 import "primeicons/primeicons.css"; // Icons
 import Header from './Header';
+import "../CSS/User.css"
 
 function Users() {
     //  const [users, setUsers] = useState([]);
