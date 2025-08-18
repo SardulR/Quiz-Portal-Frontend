@@ -10,6 +10,8 @@ import Addquestions from './components/Addquestions'
 import Login from './components/Login'
 import Quiz from './components/Quiz'
 import NewQuiz from './components/NewQuiz'
+import Quizlanding from './components/Quizlanding'
+import Quizinstruction from './components/Quizinstruction'
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
             <Route path ="/quiz" element={<Quiz/>} />
             <Route path ="/quiz/new" element={<NewQuiz/>} />
             <Route path ="/login" element={<Login/>} />
+             <Route path ="/quizlanding" element={<Quizlanding/>} />
+             <Route path ="/quizinstruction" element={<Quizinstruction/>} />
           </Routes>
         </Router>
       </div>
