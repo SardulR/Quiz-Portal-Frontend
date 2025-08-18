@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import styles from '../css/Quizinstruction.module.css'
-import { useNavigate } from 'react-router'
 
 const Quizinstruction = () => {
     const[button,setButton]=useState(false)
-    const navigate=useNavigate();
+    
   return (
     <div className={styles.instruct}>
       <h1>Quiz Instructions</h1>
