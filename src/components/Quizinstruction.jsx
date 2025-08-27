@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import styles from '../css/Quizinstruction.module.css'
+import { useNavigate } from 'react-router'
 
 const Quizinstruction = () => {
     const[button,setButton]=useState(false)
+    const navigate = useNavigate();
     
   return (
     <div className={styles.instruct}>
@@ -25,7 +27,7 @@ const Quizinstruction = () => {
         <label for ="input">I agree to the terms and conditions</label>
         </div>
       </div>
-      <button className ={!button ?styles.buttondisable:styles.button} disabled={!button}>Start Quiz</button>
+      <button className ={!button ?styles.buttondisable:styles.button} disabled={!button} onClick={()=>{navigate("/mainquiz")}}>Start Quiz</button>
     </div>
   )
 }

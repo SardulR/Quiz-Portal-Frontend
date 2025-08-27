@@ -12,9 +12,27 @@ import Quiz from './components/Quiz'
 import NewQuiz from './components/NewQuiz'
 import Quizlanding from './components/Quizlanding'
 import Quizinstruction from './components/Quizinstruction'
+import MainQuiz from './components/MainQuiz'
+import { useState } from 'react'
+import PreResult from './components/PreResult'
 
 
 function App() {
+  const [answeredQuestions, setAnsweredQuestions] = useState();
+    const [markedForReview, setMarkedForReview] = useState();
+    const [visitedQuestions, setVisitedQuestions] = useState();
+    const [notAnswered, setNotAnswered] = useState();
+
+  const handlesend = (a,b,c,d) =>{
+     setAnsweredQuestions(a)
+     setMarkedForReview(b)
+     setVisitedQuestions(c)
+     setNotAnswered(d)
+     console.log(answeredQuestions)
+     console.log(markedForReview)
+     console.log(visitedQuestions)
+     console.log(notAnswered)
+  }
   return (
       <div className = "App">
         <Router>
@@ -30,6 +48,8 @@ function App() {
             <Route path ="/login" element={<Login/>} />
              <Route path ="/quizlanding" element={<Quizlanding/>} />
              <Route path ="/quizinstruction" element={<Quizinstruction/>} />
+             <Route path ="/mainquiz" element={<MainQuiz handlesend={handlesend}/>} />
+             <Route path ="/preresult" element={<PreResult answeredQuestions={answeredQuestions} notAnswered={notAnswered} markedForReview={markedForReview} visitedQuestions={visitedQuestions}/>} />
           </Routes>
         </Router>
       </div>
