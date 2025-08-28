@@ -19,6 +19,8 @@ const MainQuiz = ({handlesend}) => {
   const [score, setScore] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [categoryScores, setCategoryScores] = useState({});
+   const userName = localStorage.getItem("userName");
+  const userEmail = localStorage.getItem("userEmail");
 
   
   const totalQuestions = 50;
@@ -60,15 +62,16 @@ const MainQuiz = ({handlesend}) => {
     }
 
     const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/api/mcqs/getques");
-        const qs = response.data || [];
-        setQuestions(qs);
-        setResponses(new Array(qs.length).fill(null));
-      } catch (error) {
-        console.error("Error fetching questions:", error);
-      }
-    };
+  try {
+    const response = await axios.get("http://localhost:5000/api/mcqs/getques");
+    console.log("Fetched questions:", response.data);
+    const qs = response.data || [];
+    setQuestions(qs);
+    setResponses(new Array(qs.length).fill(null));
+  } catch (error) {
+    console.error("Error fetching questions:", error);
+  }
+};
 
     fetchData();
   }, []);
@@ -217,8 +220,10 @@ const MainQuiz = ({handlesend}) => {
   };
 
   // ---------- Submit (compute total + category-wise) ----------
- const handleSubmit = () => {
-    handlesend(answeredQuestions.size,markedForReview.size,visitedQuestions.size,notAnswered.size)
+ // ---------- Submit (compute total + category-wise) ----------
+const handleSubmit = async () => {
+  handlesend(answeredQuestions.size, markedForReview.size, visitedQuestions.size, notAnswered.size);
+
   let total = 0;
   const catMap = {};
   for (let i = 0; i < questions.length; i++) {
@@ -243,14 +248,28 @@ const MainQuiz = ({handlesend}) => {
   setCategoryScores(catMap);
   setSubmitted(true);
 
-  // prepare chart data
-  
+  // ✅ Prepare payload for backend
+  const payload = {
+    name: userName,
+    email: userEmail,
+    score: total,
+    codingScore: catMap["Programming"] || 0,
+    aptScore: catMap["Aptitude"] || 0,
+    webScore: catMap["Web Development"] || 0,
+    mathsScore: catMap["Maths"] || 0,
+  };
 
   try {
+    // ✅ Save result to backend
+    await axios.post("http://localhost:5000/api/results/results", payload);
+
+    // ✅ Clear quiz state from localStorage
     localStorage.removeItem(STORAGE_KEY);
-    navigate("/preresult")
+
+    // ✅ Navigate
+    navigate("/preresult");
   } catch (err) {
-    console.log(err);
+    console.error("Error saving result:", err);
   }
 };
 
@@ -323,12 +342,12 @@ const MainQuiz = ({handlesend}) => {
         {/* results after submit */}
         {submitted && (
           <div className="results" style={{ marginTop: 12 }}>
-            {/* <h3>Quiz Results</h3>
+            <h3>Quiz Results</h3>
             <p>
               Total Score: {score} / {questions.length}
             </p>
-            <h4>Category-wise Score:</h4> */}
-            {/* <ul>
+            <h4>Category-wise Score:</h4>
+           <ul>
               {Object.keys(categoryScores).length === 0 ? (
                 <li>No category scores (no correct answers)</li>
               ) : (
@@ -338,7 +357,7 @@ const MainQuiz = ({handlesend}) => {
                   </li>
                 ))
               )}
-            </ul> */}
+            </ul> 
           </div>
         )}
       </div>

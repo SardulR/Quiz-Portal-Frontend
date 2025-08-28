@@ -22,6 +22,7 @@ function App() {
     const [markedForReview, setMarkedForReview] = useState();
     const [visitedQuestions, setVisitedQuestions] = useState();
     const [notAnswered, setNotAnswered] = useState();
+    
 
   const handlesend = (a,b,c,d) =>{
      setAnsweredQuestions(a)
@@ -33,19 +34,21 @@ function App() {
      console.log(visitedQuestions)
      console.log(notAnswered)
   }
+
+ 
   return (
       <div className = "App">
         <Router>
          
           <Routes>
-            <Route path ="/" element={<Dashboard />} />
+            <Route path ="/dashboard" element={<Dashboard />} />
             <Route path ="/users" element={<Users/>} />
             <Route path ="/users/new" element={<Addusers/>} />
             <Route path ="/questions" element={<Questions/>} />
             <Route path ="/question/new" element={<Addquestions/>} />
             <Route path ="/quiz" element={<Quiz/>} />
             <Route path ="/quiz/new" element={<NewQuiz/>} />
-            <Route path ="/login" element={<Login/>} />
+            <Route path ="/" element={<Login/>} />
              <Route path ="/quizlanding" element={<Quizlanding/>} />
              <Route path ="/quizinstruction" element={<Quizinstruction/>} />
              <Route path ="/mainquiz" element={<MainQuiz handlesend={handlesend}/>} />
