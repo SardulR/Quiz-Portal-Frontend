@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../css/quiz.module.css'
+import styles from '../CSS/quiz.module.css'
 import Navbar from './Navbar'
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
